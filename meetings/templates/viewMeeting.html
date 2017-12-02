@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>Memos</title>
+
+  <!-- 'viewport' is used by bootstrap to respond to device size -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Javascript:  JQuery from a content distribution network (CDN) -->
+  <script
+     src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+  </script>
+
+  <!-- Bootstrap includes javascript and css  (must follow jquery) -->
+  <link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+</script>
+
+   <!-- Our own style sheet -->
+   <link rel="stylesheet" href="/static/css/busy.css" />
+
+
+</head>
+<body>
+<div class="container">
+
+<h1>Add Meeting</h1><button onclick="home()">Home</button> <button onclick="addNew()">Create New Meeting</button> <button onclick="view()">Add Existing Meeting</button> 
+<h2>Title/ID</h2>
+<br>
+<input type="text" name="title">
+<br>
+<h2>Password</h2>
+<br>
+<input type="text" name="title">
+ 
+
+</div> <!-- container -->
+<script type="text/javascript">
+var SCRIPT_ROOT = {{ request.script_root|tojson|safe }} ;
+var newMeeting = SCRIPT_ROOT + "/addMeeting"
+var viewMeeting = SCRIPT_ROOT + "/viewMeeting"
+
+function addNew(){
+  // sends date and text to flask to be made into a new memo
+  window.location.replace(newMeeting);
+}
+
+function view(){
+  // sends date and text to flask to be made into a new memo
+  window.location.replace(viewMeeting);
+}
+function home(){
+  window.location.replace(SCRIPT_ROOT + "/");
+}
+
+</script>
+</body>
+</html>
