@@ -34,7 +34,7 @@
   <div class="memo">
   <div class="row">
   <div class="col-md-2">
-    <button onclick="openMeeting()" class="check"> View </button> {{ memo.name }}
+    <button class="check"> View </button> {{ memo.name }}
     <input TYPE="text" class="memoId" value="{{ memo._id }}" style="display: none">
 
   </div>
@@ -53,15 +53,17 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }} ;
 var newMeeting = SCRIPT_ROOT + "/addMeeting"
 var viewMeeting = SCRIPT_ROOT + "/viewMeeting"
 
+$(".check").click(function(event){
+  meetingId = $(this).parent()[0].childNodes[3].value
+  $.getJSON(SCRIPT_ROOT + "/_view_Meeting", { id: meetingId });
+  window.location.replace(viewMeeting);
+})
+
 function addNew(){
 	// sends date and text to flask to be made into a new memo
 	window.location.replace(newMeeting);
 }
 
-function view(){
-	// sends date and text to flask to be made into a new memo
-	window.location.replace(viewMeeting);
-}
 function home(){
 	window.location.replace(SCRIPT_ROOT + "/");
 }

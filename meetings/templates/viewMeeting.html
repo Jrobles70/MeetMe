@@ -26,15 +26,13 @@
 <body>
 <div class="container">
 
-<h1>Add Meeting</h1><button onclick="home()">Home</button> <button onclick="addNew()">Create New Meeting</button> <button onclick="view()">Add Existing Meeting</button> 
-<h2>Title/ID</h2>
+<h1>Meetings</h1><button onclick="home()">Home</button> <button onclick="addNew()">Create New Meeting</button> <button onclick="view()">Add Existing Meeting</button> 
+<h2>{{ g.meeting.name }}</h2>
 <br>
-<input type="text" name="title">
-<br>
-<h2>Password</h2>
-<br>
-<input type="text" name="title">
- 
+<h2>{{ g.meeting.freeTime }}</h2>
+<h2>{{ g.meeting.comments }}</h2>
+<br /><input type="submit" />
+
 
 </div> <!-- container -->
 <script type="text/javascript">

@@ -92,7 +92,7 @@ def choose():
     gcal_service = get_gcal_service(credentials)
     app.logger.debug("Returned from get_gcal_service")
     flask.g.calendars = list_calendars(gcal_service)
-    return render_template('index.html')
+    return render_template('meeting.html')
 
 @app.route("/addMeeting")
 def addMeeting():
@@ -107,8 +107,19 @@ def viewMeeting():
     # Will take user to a screen asking for the meeting id and password. if given correctly it will display that page
     # User will be able to comment(The same way we added memos) only after they add their availability
     app.logger.debug("View page entered")
+    app.logger.debug(flask.session['meeting'])
     return flask.render_template('viewMeeting.html')
 
+@app.route("/_view_Meeting")
+def _viewMeeting():
+    # Will take user to a screen asking for the meeting id and password. if given correctly it will display that page
+    # User will be able to comment(The same way we added memos) only after they add their availability
+    id = request.form.get("id", type=str)
+    for i in collection.find({"_id": ObjectId("5a2219b389d50f720c913979")}):
+        flask.session['meeting'] = i
+    app.logger.debug(flask.session['meeting'])
+    app.logger.debug("_View page entered")
+    return 'Done'
 
 @app.route("/_add_Meeting")
 def addMemo():
@@ -138,7 +149,7 @@ def addMemo():
               }
     print(record)
     collection.insert(record)
-    return render_template('meeting.html')
+
 
 
 def hash_password(password):
@@ -285,8 +296,6 @@ def setrange():
     daterange = request.form.get('daterange')
     start = request.form.get('start')
     end = request.form.get('end')
-    print("PRINTING START END")
-    print(interpret_time(start),interpret_time(end))
     flask.session['daterange'] = daterange
     daterange_parts = daterange.split()
     flask.session['begin_date'] = interpret_date(daterange_parts[0])
@@ -300,8 +309,8 @@ def setrange():
       flask.session['begin_date'], flask.session['end_date']))
 
 
-    return addMemo()
-
+    addMemo()
+    return flask.render_template('meeting.html')
     #return flask.redirect(flask.url_for("choose"))
 
 ####
