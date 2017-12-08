@@ -1,7 +1,7 @@
 # proj10-MeetMe
 
 ## Overview
-This is my final project for CIS 322. This is still a work in progress and is a little rough around the edges. I am in the process of finishing this and will have it done by the end of this weekend. The way this project works is that it allows a user to create a meeting with a title and a password. The user will give a date range they want to have the meeting and the meeting will be added to mongodb. The user needs to give the title and password to any other people who want to be apart of this meeting as well. When they join the meeting they will add their free time to the database and the server will find similar times for them to meet. Finally all users are able to leave comments in the meetings page in case something does not work out and they want to change the day.
+This is my final project for CIS 322. This is still a work in progress and is a little rough around the edges. I struggled to finish this along with a few other large projects I had and honestly was not able to complete it. I essentially merged together my memos project with my busy times project to create an interface similar to memos but with meetings. I struggled to get everything working together and I am really dissatisfied with this project. I was not able to add the free times to the database for an unknown reason and I struggled passing information needed to view a meeting page. I realize that this will be my lowest graded project so I am hoping that my other projects show that I worked hard this term but dropped the ball a little bit at the end of the term.
 
 
 ## How to use
